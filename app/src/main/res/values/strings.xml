@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">mypro</string>
+    <string name="log_in">Log In</string>
+    <string name="user_password">User Password</string>
+    <string name="user_name">User Name</string>
+    <string name="login">Login</string>
+    <string name="stay_signed_in">Stay signed in</string>
+</resources>
