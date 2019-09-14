@@ -26,6 +26,7 @@
             android:layout_gravity="center_horizontal"/>
 
  <com.google.android.material.textfield.TextInputLayout
+     android:gravity="start"
      android:hint="@string/user_name"
      android:layout_width="match_parent"
      android:layout_height="match_parent"
@@ -33,6 +34,7 @@
      >
 
      <com.google.android.material.textfield.TextInputEditText
+         android:gravity="start"
          android:inputType="textEmailAddress"
          android:backgroundTint="@color/colorPrimary"
          android:layout_margin="10dp"
@@ -45,8 +47,9 @@
  </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:gravity="start"
             android:hint="@string/user_password"
-            android:id="@+id/Password_layout"
+            android:id="@+id/passwordLayout"
             app:counterMaxLength="8"
             app:counterEnabled="true"
             app:passwordToggleEnabled="true"
@@ -55,6 +58,7 @@
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:gravity="start"
                 android:backgroundTint="@color/colorPrimary"
                 android:inputType="textPassword"
                 android:layout_margin="10dp"
@@ -98,6 +102,7 @@
                 android:textSize="16sp"/>
         </LinearLayout>
     </LinearLayout>
+
     <ImageView
         android:layout_gravity="center_horizontal"
         android:layout_width="110dp"

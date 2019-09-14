@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +31,6 @@ public class LoginFragment extends DialogFragment {
     CheckBox checkBox;
     TextInputEditText password;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,11 +38,11 @@ public class LoginFragment extends DialogFragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
          login=view.findViewById(R.id.login);
-         passwordLayout = view.findViewById(R.id.Password_layout);
+         passwordLayout = view.findViewById(R.id.passwordLayout);
          name = view.findViewById(R.id.userName);
          password = view.findViewById(R.id.userPassword);
          checkBox = view.findViewById(R.id.checkBox);
@@ -53,40 +51,27 @@ public class LoginFragment extends DialogFragment {
          //check button login
         login.setOnClickListener(loginListener);
 
-        //check Check Box
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if(isChecked)
-                {
-                    savingLogin.isLoggedIn();
-                    ((Home)getActivity()).textView.setText(name.getText().toString());
-                }
-            }
-        });
-
     }
-//داله للتحقق من تسجيل الدخول
+     //داله للتحقق من تسجيل الدخول
     View.OnClickListener loginListener=new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             String str_userName=name.getText().toString();
             String str_password=password.getText().toString();
-            String admin = "admin";
-            String adminPassword = "12345678";
 
-            if(str_userName.equals(admin) && str_password.equals(adminPassword))
+            if(str_userName.equals(getString(R.string.admin)) && str_password.equals(getString(R.string.adminPassword)))
             {
-
-            ((Home)getActivity()).textView.setText(name.getText().toString());
+                //click check
+                if (checkBox.isChecked()){
+                   savingLogin.writeLogin(false);
+                }
+                ((Home)getActivity()).textView.setText(name.getText().toString());
             dismiss();
-            }else
-            {
-             Toast.makeText(getContext(),"UserName and/or Password are not correct",Toast.LENGTH_LONG).show();
             }
-        }
-    };
+            else
+            {
+             Toast.makeText(getContext(),R.string.error,Toast.LENGTH_LONG).show();
+            }}};
 
     //داله لاظهار خطا الباسويرد اكبر من 8 احرف
     TextWatcher passwordWatcher =new TextWatcher() {
@@ -99,7 +84,7 @@ public class LoginFragment extends DialogFragment {
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if(s.length()>passwordLayout.getCounterMaxLength())
             {
-                passwordLayout.setError("Password is too long ...");
+                passwordLayout.setError(getString(R.string.setError));
             }else {
 
                 passwordLayout.setError(null);

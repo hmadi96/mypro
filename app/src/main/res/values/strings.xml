@@ -5,4 +5,11 @@
     <string name="user_name">User Name</string>
     <string name="login">Login</string>
     <string name="stay_signed_in">Stay signed in</string>
+    <string name="admin">admin</string>
+    <string name="adminPassword">12345678</string>
+    <string name="error">UserName and/or Password are not correct</string>
+    <string name="setError">Password is too long ...</string>
+    <string name="prefs">prefs</string>
+    <string name="login_preferences">login_preferences</string>
+    <string name="login_status_preferences">login_status_preferences</string>
 </resources>

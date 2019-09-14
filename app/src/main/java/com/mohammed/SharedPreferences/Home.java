@@ -3,14 +3,15 @@ package com.mohammed.SharedPreferences;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
 
   public  TextView textView;
-  
+    boolean setAdmin=true;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,22 +20,18 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar=findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
 
-// صناعه ملف للتخزين
-        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
-// متغير يحفض الحاله
-        boolean firstStart = prefs.getBoolean("firstStart", true);
-// اذا كان المتغير صحيح فسوف تظهر الدايلوك وبالعكس
-        if (firstStart) {
-            showStartDialog();
+        textView=findViewById(R.id.textView);
+        SavingLogin savingLogin = new SavingLogin(getApplicationContext());
+          // شرط عرض الدايلوك
+        if(savingLogin.getReadLoggedIn()){
+           showStartDialog();
+           setAdmin=false;
         }
 
-
-        textView=findViewById(R.id.textView);
-//صنع متغير لتخزين واضافته للتاكس فيو
-        String myAdmin = prefs.getString("admin","admin");
-        textView.setText(myAdmin);
-
-
+      if(setAdmin){
+          String setAdmin = getString(R.string.admin);
+       textView.setText(savingLogin.prefs.getString(setAdmin,setAdmin));
+      }
     }
 //داله لعرض الدايلوك تسجيل الدخول
     private void showStartDialog() {
